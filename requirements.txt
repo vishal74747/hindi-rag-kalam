@@ -1,0 +1,15 @@
+# Version ranges, not exact pins: they stop a future major release from silently changing results.
+# For a byte-for-byte reproducible environment, freeze what you actually ran with:
+#   pip freeze | grep -iE "^(pymupdf|chromadb|sentence-transformers|groq|rank-bm25|numpy)==" > requirements.lock.txt
+pymupdf>=1.26,<2
+chromadb>=1.0,<2
+sentence-transformers>=3.0,<6   # also provides the cross-encoder used by --rerank
+groq>=0.30,<2
+rank-bm25>=0.2.2,<0.3
+numpy>=1.26,<3
+
+# Optional extras (not needed for the default pipeline):
+#   pip install docling          for `python ingest.py --tables docling` (the cached Docling output
+#                                used by compare_extractors.py is committed, so the comparison
+#                                reproduces without it)
+#   pip install FlagEmbedding    for `--retrieval hybrid-m3` (bge-m3 sparse scores)
